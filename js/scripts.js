@@ -117,6 +117,8 @@ $(document).ready(function(){
       newPlayer2.playerTotalScore = 0;
       $('.totalPoints1').text(newPlayer1.playerTotalScore);
       $('.totalPoints2').text(newPlayer2.playerTotalScore);
+      $('#player_1_score').text(newPlayer1.playerTotalScore);
+      $('#player_2_score').text(newPlayer2.playerTotalScore);
     });
   });
 });
