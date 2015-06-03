@@ -17,10 +17,10 @@
         <form id="pig_dice_players">
           <div class="form-group">
             <label for="player_name1">Please Type In Player 1's Name:</label>
-            <input type="text" class="form-control" id="player_name1">
+            <input type="text" class="form-control" id="player_name1" value="Player 1">
             <br>
             <label for="player_name2">Please Type In Player 2's Name:</label>
-            <input type="text" class="form-control" id="player_name2">
+            <input type="text" class="form-control" id="player_name2" value="Player 2">
           </div>
           <button type="submit" class="btn">Add Player to Team</button>
         </form>
@@ -31,16 +31,23 @@
           <br>
 
           <ul id='players-on-team-1'>
-            <h4>Team 1</h4>
+            <h4>Player 1</h4>
           </ul>
-          <br>
 
           <ul id='players-on-team-2'>
-            <h4>Team 2</h4>
+            <h4>Player 2</h4>
           </ul>
         </div>
+        <div id='all_scores'>
+        <h4><p>Player 1's Score: <span id='player_1_score'></span></p></h4>
+        <h4><p>Player 2's Score: <span id='player_2_score'></span></p></h4>
+
+        </div>
+
 
       </div>
+      <br>
+      <button type="submit" class="btn-danger" id='reset_game'>Reset Game</button>
 
     </div>
   </div>

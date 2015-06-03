@@ -8,10 +8,10 @@ function rollDice(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function resetFields(){
-  $('input#player_name1').val("");
-  $('input#player_name2').val("");
-
+Player.prototype.checkWin = function(score){
+  if(score >= 100){
+    alert(this.playerName + " has won!");
+  }
 }
 
 $(document).ready(function(){
@@ -25,19 +25,17 @@ $(document).ready(function(){
     var newPlayer2 = new Player(inputPlayerName2);
     $('#show-game').show();
 
-    resetFields();
     $('ul#players-on-team-1').append("<li><span class='player1_info'> Player Information: <br> Player's Name: " + newPlayer1.playerName + "</span></li>");
     $('ul#players-on-team-1').show();
-
     $('ul#players-on-team-2').append("<li><span class='player2_info'> Player Information: <br> Player's Name: " + newPlayer2.playerName + "</span></li>");
     $('ul#players-on-team-2').show();
+    $('#pig_dice_players').hide();
 
-
-    $('.player1_info').click(function(){
+    $('.player1_info').one('click',function(){
       $('ul#players-on-team-2').hide();
 
       $('#players-on-team-1').append('<form id="game_form1">' +
-      '<p>You Rolled A: <span class="lastRoll1"></span></p>' +
+      '<p>Your Roll: <span class="lastRoll1"></span></p>' +
       '<p>Turn Points: <span class="turnPoints1"></span></p>' +
       '<p>Total Points: <span class="totalPoints1"></span></p>' +
       '<button class="btn btn-primary" id="roll_dice1">Roll The Dice</button>' +
@@ -56,6 +54,7 @@ $(document).ready(function(){
           newPlayer1.playerTurnScore += roll;
           $('.turnPoints1').text(newPlayer1.playerTurnScore);
         }
+        newPlayer1.checkWin(newPlayer1.playerTotalScore);
       });
 
       $('form#game_form1').submit(function(event){
@@ -64,16 +63,20 @@ $(document).ready(function(){
         $('.totalPoints1').text(newPlayer1.playerTotalScore);
         newPlayer1.playerTurnScore = 0;
         $('.turnPoints1').text(newPlayer1.playerTurnScore);
+        $('.lastRoll1').text("");
         $('ul#players-on-team-1').hide()
         $('ul#players-on-team-2').show()
+        $('#player_1_score').text(newPlayer1.playerTotalScore);
+        newPlayer1.checkWin(newPlayer1.playerTotalScore);
+
       });
     });
 
-    $('.player2_info').click(function(){
+    $('.player2_info').one('click', function(){
       $('ul#players-on-team-1').hide();
 
       $('#players-on-team-2').append('<form id="game_form2">' +
-      '<p>You Rolled A: <span class="lastRoll2"></span></p>' +
+      '<p>Your Roll: <span class="lastRoll2"></span></p>' +
       '<p>Turn Points: <span class="turnPoints2"></span></p>' +
       '<p>Total Points: <span class="totalPoints2"></span></p>' +
       '<button class="btn btn-primary" id="roll_dice2">Roll The Dice</button>' +
@@ -92,6 +95,7 @@ $(document).ready(function(){
           newPlayer2.playerTurnScore += roll;
           $('.turnPoints2').text(newPlayer2.playerTurnScore);
         }
+        newPlayer2.checkWin(newPlayer2.playerTotalScore);
       });
 
       $('form#game_form2').submit(function(event){
@@ -100,9 +104,19 @@ $(document).ready(function(){
         $('.totalPoints2').text(newPlayer2.playerTotalScore);
         newPlayer2.playerTurnScore = 0;
         $('.turnPoints2').text(newPlayer2.playerTurnScore);
+        $('.lastRoll2').text("");
         $('ul#players-on-team-2').hide()
         $('ul#players-on-team-1').show()
+        $('#player_2_score').text(newPlayer2.playerTotalScore);
+        newPlayer2.checkWin(newPlayer2.playerTotalScore);
       });
+    });
+
+    $('button#reset_game').click(function(){
+      newPlayer1.playerTotalScore = 0;
+      newPlayer2.playerTotalScore = 0;
+      $('.totalPoints1').text(newPlayer1.playerTotalScore);
+      $('.totalPoints2').text(newPlayer2.playerTotalScore);
     });
   });
 });
