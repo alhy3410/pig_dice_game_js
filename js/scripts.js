@@ -34,7 +34,7 @@ $(document).ready(function(){
     $('.player1_info').one('click',function(){
       $('ul#players-on-team-2').hide();
 
-      $('#players-on-team-1').append('<form id="game_form1">' +
+      $('#players-on-team-1').append('<form id="game_form1"><br>' +
       '<p>Your Roll: <span class="lastRoll1"></span></p>' +
       '<p>Turn Points: <span class="turnPoints1"></span></p>' +
       '<p>Total Points: <span class="totalPoints1"></span></p>' +
@@ -75,7 +75,7 @@ $(document).ready(function(){
     $('.player2_info').one('click', function(){
       $('ul#players-on-team-1').hide();
 
-      $('#players-on-team-2').append('<form id="game_form2">' +
+      $('#players-on-team-2').append('<form id="game_form2"><br>' +
       '<p>Your Roll: <span class="lastRoll2"></span></p>' +
       '<p>Turn Points: <span class="turnPoints2"></span></p>' +
       '<p>Total Points: <span class="totalPoints2"></span></p>' +

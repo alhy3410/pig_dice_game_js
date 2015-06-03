@@ -1,3 +1,6 @@
+body{
+  font-family: 'Gloria Hallelujah', cursive;
+}
 #show-game{
   display:none;
 }
